@@ -17,7 +17,7 @@ app = wx.App()
 
 
 def ChromeDriver():
-    browser = webdriver.Chrome(executable_path='C:\\chromedriver.exe')
+    browser = webdriver.Chrome(executable_path='F:\\chromedriver.exe')
     browser.maximize_window()
     url_list = ['https://etender.co.bw/opentenders','https://etender.co.bw/opentendersc']
     
@@ -28,9 +28,9 @@ def ChromeDriver():
 def first_url(url,browser):
     browser.get(url)
     time.sleep(2)
-    wx.MessageBox(' See IF Webpage Load Poperly Then Click on OK BUTTON ','etender.co.bw', wx.OK | wx.ICON_WARNING)
-    time.sleep(2)
-    for dropdown in browser.find_elements_by_xpath('//*[@id="DataTables_Table_0_length"]/label/select/option[3]'):
+    # wx.MessageBox(' See IF Webpage Load Poperly Then Click on OK BUTTON ','etender.co.bw', wx.OK | wx.ICON_WARNING)
+    # time.sleep(2)
+    for dropdown in browser.find_elements_by_xpath('//*[@id="DataTables_Table_0_length"]/label/select/option[4]'):
         dropdown.click()
         break
     time.sleep(5)
@@ -50,23 +50,23 @@ def first_url(url,browser):
                 Tender_title = ''
                 Due_date = ''
                 Open_tender_link = ''
-                for company in browser.find_elements_by_xpath(f'//*[@id="DataTables_Table_0"]/tbody/tr[{str(tr)}]/td[2]'):
+                for company in browser.find_elements_by_xpath(f'//*[@id="DataTables_Table_0"]/tbody/tr[{str(tr)}]/td[1]'):
                     company = company.get_attribute('innerText').strip()
                     # print(company)
                     break
-                for category in browser.find_elements_by_xpath(f'//*[@id="DataTables_Table_0"]/tbody/tr[{str(tr)}]/td[3]'):
+                for category in browser.find_elements_by_xpath(f'//*[@id="DataTables_Table_0"]/tbody/tr[{str(tr)}]/td[2]'):
                     category = category.get_attribute('innerText').strip()
                     # print(category)
                     break
-                for Tender_number in browser.find_elements_by_xpath(f'//*[@id="DataTables_Table_0"]/tbody/tr[{str(tr)}]/td[4]'):
+                for Tender_number in browser.find_elements_by_xpath(f'//*[@id="DataTables_Table_0"]/tbody/tr[{str(tr)}]/td[3]'):
                     Tender_number = Tender_number.get_attribute('innerText').strip()
                     # print(Tender_number)
                     break
-                for Tender_title in browser.find_elements_by_xpath(f'//*[@id="DataTables_Table_0"]/tbody/tr[{str(tr)}]/td[5]'):
+                for Tender_title in browser.find_elements_by_xpath(f'//*[@id="DataTables_Table_0"]/tbody/tr[{str(tr)}]/td[4]'):
                     Tender_title = Tender_title.get_attribute('innerText').strip()
                     # print(Tender_title)
                     break
-                for Due_date in browser.find_elements_by_xpath(f'//*[@id="DataTables_Table_0"]/tbody/tr[{str(tr)}]/td[6]'):
+                for Due_date in browser.find_elements_by_xpath(f'//*[@id="DataTables_Table_0"]/tbody/tr[{str(tr)}]/td[5]'):
                     Due_date = Due_date.get_attribute('outerHTML').strip()
                     Due_date = Due_date.partition('<td>')[2].partition('<br>')[0].strip()
                     try:
@@ -77,7 +77,7 @@ def first_url(url,browser):
                         wx.MessageBox(' Error On Date Formate Of Due_date -_- ', 'etender.co.bw', wx.OK | wx.ICON_ERROR)
                         print('Error On Date Formate Of Due_date')
                     break
-                for Open_tender_link in browser.find_elements_by_xpath(f'//*[@id="DataTables_Table_0"]/tbody/tr[{str(tr)}]/td[7]/a'):
+                for Open_tender_link in browser.find_elements_by_xpath(f'//*[@id="DataTables_Table_0"]/tbody/tr[{str(tr)}]/td[6]/a'):
                     Open_tender_link = Open_tender_link.get_attribute('href').strip()
                     # print(Open_tender_link)
                     break
@@ -99,7 +99,6 @@ def first_url(url,browser):
                         Posted_date = get_htmlsource.partition('Date Posted:')[2].partition('<br>')[0].strip()
 
                         Scrap_data(get_htmlsource,company,category,Tender_number,Tender_title,Due_date,Open_tender_link,Posted_date)
-
                         print(f'Total: {str(tender_count)} Deadline Not given: {global_var.deadline_Not_given} duplicate: {global_var.duplicate} inserted: {global_var.inserted} expired: {global_var.expired} QC Tenders: {global_var.QC_Tenders}')
                         loop = False
                     except Exception as e:
@@ -123,8 +122,8 @@ def first_url(url,browser):
 def second_url(url,browser):
     browser.get(url)
     time.sleep(2)
-    wx.MessageBox(' See IF Webpage Load Poperly Then Click on OK BUTTON ','etender.co.bw', wx.OK | wx.ICON_WARNING)
-    time.sleep(2)
+    # wx.MessageBox(' See IF Webpage Load Poperly Then Click on OK BUTTON ','etender.co.bw', wx.OK | wx.ICON_WARNING)
+    # time.sleep(2)
     for dropdown in browser.find_elements_by_xpath('//*[@id="DataTables_Table_0_length"]/label/select/option[4]'):
         dropdown.click()
         break

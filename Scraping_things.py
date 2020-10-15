@@ -15,7 +15,7 @@ app = wx.App()
 def Scrap_data(get_htmlSource,company,category,Tender_number,Tender_title,Due_date,Open_tender_link,Posted_date):
 
     SegFeild = []
-    for data in range(42):
+    for data in range(45):
         SegFeild.append('')
     
     a = True
@@ -64,6 +64,12 @@ def Scrap_data(get_htmlSource,company,category,Tender_number,Tender_title,Due_da
             # Source Name
             SegFeild[31] = 'etender.co.bw'
 
+            SegFeild[20] = ""
+            SegFeild[21] = "" 
+            SegFeild[42] = SegFeild[7]
+            SegFeild[43] = "" 
+
+
             for SegIndex in range(len(SegFeild)):
                 print(SegIndex, end=' ')
                 print(SegFeild[SegIndex])
@@ -77,7 +83,6 @@ def Scrap_data(get_htmlSource,company,category,Tender_number,Tender_title,Due_da
                 SegFeild[18] = str(SegFeild[18])[:1500]+'...'
             check_date(get_htmlSource, SegFeild)
             a = False
-
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
